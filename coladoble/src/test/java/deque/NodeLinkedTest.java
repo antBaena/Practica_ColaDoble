@@ -41,6 +41,7 @@ public class NodeLinkedTest {
             LinkedNode<String> test = new LinkedNode<String>(item, null, null);
 
             String result = test.getItem();
+
             assertEquals(item, result);
         }
 

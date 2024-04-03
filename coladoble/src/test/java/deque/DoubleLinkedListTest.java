@@ -10,6 +10,23 @@ import org.junit.jupiter.api.*;
 @DisplayName("DoubleLinkedList")
 public class DoubleLinkedListTest {
 
+    @DisplayName("Constructor")
+    @Nested
+    class Constructor {
+        @DisplayName("El constructor debe establecer el tamaño a 0")
+        @Test
+        void Constructor_EstableceTamanyoA0() {
+            DoubleLinkedQueue<Integer> test = new DoubleLinkedList<Integer>();
+            int expected = 0;
+
+            int result = test.size();
+
+            assertEquals(expected, result);
+
+        }
+
+    }
+
     @Nested
     @DisplayName("metodo prepend")
     class prepend {
@@ -19,36 +36,36 @@ public class DoubleLinkedListTest {
         public void Prepend_ValorValido_AnyadeElementoAlPrincipio() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
             int valor = 1;
-            doubleList.prepend(valor);
 
+            doubleList.prepend(valor);
             int result = doubleList.first();
 
             assertEquals(valor, result);
         }
 
-        @DisplayName("El método prepend debe insertar un elemento al principio de la cola y mover el anterior primer elemento")
+        @DisplayName("El método prepend debe insertar un elemento al principio de la cola si hay mas elementos")
         @Test
         public void Prepend_ValorValido_InsertaElementoAlPrincipio() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
             int valor1 = 1;
             int valor2 = 2;
+
             doubleList.prepend(valor1);
             doubleList.prepend(valor2);
-
             int result = doubleList.first();
 
             assertEquals(valor2, result);
         }
 
-        @DisplayName("El método prepend debe insertar el primer elemento al principio y moverlo después a la última posición")
+        @DisplayName("El método prepend debe insertar el primer elemento al principio y mover el anterior primero a la segunda pos")
         @Test
         public void Prepend_ValorValido_DesplazaElementoAlPrincipio() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
             int valor1 = 1;
             int valor2 = 2;
+
             doubleList.prepend(valor1);
             doubleList.prepend(valor2);
-
             int result = doubleList.last();
 
             assertEquals(valor1, result);
@@ -72,36 +89,36 @@ public class DoubleLinkedListTest {
         void Append_ValorValido_AnyadeElementoAlFinal() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
             int valor = 1;
-            doubleList.append(valor);
 
+            doubleList.append(valor);
             int result = doubleList.last();
 
             assertEquals(valor, result);
         }
 
-        @DisplayName("El método prepend debe insertar un elemento al final de la cola y mover el anterior ultimo elemento")
+        @DisplayName("El método append debe insertar un elemento al final de la cola si hay mas elementos")
         @Test
-        public void Prepend_ValorValido_InsertaElementoAlPrincipio() {
+        public void Append_ValorValido_InsertaElementoAlFinal() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
             int valor1 = 1;
             int valor2 = 2;
+
             doubleList.append(valor1);
             doubleList.append(valor2);
-
             int result = doubleList.last();
 
             assertEquals(valor2, result);
         }
 
-        @DisplayName("El método prepend debe desplazar el anterior ultimo elemento al la segundo posicion anterior")
+        @DisplayName("El método append debe insertar un elemento al final y desplazar el anterior ultimo elemento al la segundo posicion anterior")
         @Test
-        public void Prepend_ValorValido_DesplazaElementoAlPrincipio() {
+        public void Append_ValorValido_DesplazaElementoAlFinal() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
             int valor1 = 1;
             int valor2 = 2;
+
             doubleList.append(valor1);
             doubleList.append(valor2);
-
             int result = doubleList.first();
 
             assertEquals(valor1, result);
@@ -126,6 +143,7 @@ public class DoubleLinkedListTest {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
             int valor = 1;
             doubleList.append(valor);
+
             doubleList.deleteFirst();
 
             assertThrows(DoubleLinkedQueueException.class, () -> doubleList.first());
@@ -139,8 +157,8 @@ public class DoubleLinkedListTest {
             int valor2 = 2;
             doubleList.append(valor1);
             doubleList.append(valor2);
-            doubleList.deleteFirst();
 
+            doubleList.deleteFirst();
             int result = doubleList.first();
 
             assertEquals(valor2, result);
@@ -165,6 +183,7 @@ public class DoubleLinkedListTest {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
             int valor = 1;
             doubleList.append(valor);
+
             doubleList.deleteLast();
 
             assertThrows(DoubleLinkedQueueException.class, () -> doubleList.last());
@@ -178,8 +197,8 @@ public class DoubleLinkedListTest {
             int valor2 = 2;
             doubleList.append(valor1);
             doubleList.append(valor2);
-            doubleList.deleteLast();
 
+            doubleList.deleteLast();
             int result = doubleList.last();
 
             assertEquals(valor1, result);
@@ -189,6 +208,7 @@ public class DoubleLinkedListTest {
         @Test
         void DeleteLast_ListaVacia_LanzaExcepcion() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
+
             assertThrows(DoubleLinkedQueueException.class, () -> doubleList.deleteLast());
         }
     }
@@ -196,7 +216,7 @@ public class DoubleLinkedListTest {
     @Nested
     @DisplayName("metodo first")
     class first {
-        @DisplayName("El método first debe devolver el primer elemento de la cola si la lista tiene al menos un elemento")
+        @DisplayName("El método first debe devolver el primer elemento de la cola si la lista tiene un elemento")
         @Test
         void First_ListaConUnElemento_DevuelveElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -226,6 +246,7 @@ public class DoubleLinkedListTest {
         @Test
         void First_ListaVacia_LanzaExcepcion() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
+
             assertThrows(DoubleLinkedQueueException.class, () -> doubleList.first());
         }
 
@@ -234,7 +255,7 @@ public class DoubleLinkedListTest {
     @Nested
     @DisplayName("metodo last")
     class last {
-        @DisplayName("El método last debe devolver el ultimo elemento de la cola si la lista tiene al menos un elemento")
+        @DisplayName("El método last debe devolver el ultimo elemento de la cola si la lista tiene un elemento")
         @Test
         void Last_ListaConUnElemento_DevuelveElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -264,6 +285,7 @@ public class DoubleLinkedListTest {
         @Test
         void Last_ListaVacia_LanzaExcepcion() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
+
             assertThrows(DoubleLinkedQueueException.class, () -> doubleList.last());
         }
 
@@ -296,7 +318,7 @@ public class DoubleLinkedListTest {
             assertEquals(expected, result);
         }
 
-        @DisplayName("El método size debe devolver el tamaño de la cola")
+        @DisplayName("El método size debe devolver el tamaño de la lista si tiene varios elementos")
         @Test
         void Size_ListaConVariosElementos_DevuelveTamanyo() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -312,13 +334,4 @@ public class DoubleLinkedListTest {
         }
 
     }
-
-    // ParametazidTest
-    // csvSource
-    // Prohibido hacar for/if/while
-    // @ParameterizedTest
-    // @CsvSource({"1,2,3,4,5", "6,7,8,9,10"})
-    // void test(int a, int b, int c, int d, int e) {
-    // System.out.println(a + b + c + d + e);
-    // }
 }
