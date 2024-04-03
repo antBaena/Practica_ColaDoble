@@ -4,6 +4,8 @@
 */
 package deque;
 
+import java.util.Comparator;
+
 /**
  * A double-ended queue or deque is a linear collection that supports element
  * insertion, retrieval and removal at both ends.
@@ -63,7 +65,11 @@ public interface DoubleLinkedQueue<T> {
     int size();
 
     // Complex operations
-    // (Estas operaciones se incluirán más adelante para ser realizadas en la
-    // segunda
-    // sesión de laboratorio de esta práctica.)
+    T get(int index);
+
+    boolean contains(T value);
+
+    void remove(T value);
+
+    void sort(Comparator<? super T> comparator);
 }

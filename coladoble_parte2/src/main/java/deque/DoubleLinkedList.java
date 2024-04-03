@@ -4,6 +4,8 @@
 */
 package deque;
 
+import java.util.Comparator;
+
 public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
 
     private LinkedNode<T> first;
@@ -102,5 +104,70 @@ public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new DoubleLinkedQueueException("Indice fuera de rango!!!");
+        }
+        LinkedNode<T> node = first;
+        for (int i = 0; i < index; i++) {
+            node = node.getNext();
+        }
+        return node.getItem();
+
+    }
+
+    @Override
+    public boolean contains(T value) {
+        LinkedNode<T> node = first;
+        while (node != null) {
+            if (node.getItem().equals(value)) {
+                return true;
+            }
+            node = node.getNext();
+        }
+        return false;
+    }
+
+    @Override
+    public void remove(T value) {
+        LinkedNode<T> node = first;
+        while (node != null) {
+            if (node.getItem().equals(value)) {
+                if (node == first) {
+                    deleteFirst();
+                } else if (node == last) {
+                    deleteLast();
+                } else {
+                    node.getPrevious().setNext(node.getNext());
+                    node.getNext().setPrevious(node.getPrevious());
+                    size--;
+                }
+                return;
+            }
+            node = node.getNext();
+        }
+    }
+
+    @Override
+    public void sort(Comparator<? super T> comparator) {
+        if (size < 2) {
+            return;
+        }
+        LinkedNode<T> node = first;
+        while (node != null) {
+            LinkedNode<T> next = node.getNext();
+            while (next != null) {
+                if (comparator.compare(node.getItem(), next.getItem()) > 0) {
+                    T temp = node.getItem();
+                    node.setItem(next.getItem());
+                    next.setItem(temp);
+                }
+                next = next.getNext();
+            }
+            node = node.getNext();
+        }
     }
 }

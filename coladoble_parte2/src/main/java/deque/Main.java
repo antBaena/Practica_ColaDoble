@@ -1,5 +1,7 @@
 package deque;
 
+import java.util.Comparator;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -7,11 +9,16 @@ public class Main {
         d1.append(1);
         show(d1);
 
+        d1.append(3);
+        show(d1);
+
         d1.append(2);
         show(d1);
 
-        d1.append(3);
+        d1.sort(Comparator.naturalOrder());
         show(d1);
+
+        System.out.println(d1.get(1));
 
         d1.deleteFirst();
         show(d1);
