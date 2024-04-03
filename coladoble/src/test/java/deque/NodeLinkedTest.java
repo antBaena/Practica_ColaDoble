@@ -31,137 +31,238 @@ public class NodeLinkedTest {
         node = new LinkedNode<String>(item, previous, next);
     }
 
-    @DisplayName("El método getItem debe devolver el item")
-    @Test
-    void getItem_DevulveItem() {
+    @DisplayName("Constructor")
+    @Nested
+    class Constructor {
+        @DisplayName("El constructor debe establecer el item")
+        @Test
+        void Constructor_EstableceItem() {
+            String item = "test";
+            LinkedNode<String> test = new LinkedNode<String>(item, null, null);
 
-        String result = node.getItem();
+            String result = test.getItem();
+            assertEquals(item, result);
+        }
 
-        assertEquals(item, result);
+        @DisplayName("El constructor debe establecer el nodo anterior")
+        @Test
+        void Constructor_EstableceNodoAnterior() {
+            String itemPrev = "prev";
+            String item = "test";
+            LinkedNode<String> previous = new LinkedNode<String>(itemPrev, null, null);
+            LinkedNode<String> test = new LinkedNode<String>(item, previous, null);
+
+            LinkedNode<String> result = test.getPrevious();
+
+            assertEquals(previous, result);
+        }
+
+        @DisplayName("El constructor debe establecer el nodo siguiente")
+        @Test
+        void Constructor_EstableceNodoSiguiente() {
+            String itemNext = "prev";
+            String item = "test";
+            LinkedNode<String> next = new LinkedNode<String>(itemNext, null, null);
+            LinkedNode<String> test = new LinkedNode<String>(item, null, next);
+
+            LinkedNode<String> result = test.getNext();
+
+            assertEquals(next, result);
+        }
+    }
+
+    @DisplayName("método getItem")
+    @Nested
+    class getItem {
+        @DisplayName("El método getItem debe devolver el item")
+        @Test
+        void getItem_DevulveItem() {
+
+            String result = node.getItem();
+
+            assertEquals(item, result);
+
+        }
+    }
+
+    @DisplayName("método getPrevious")
+    @Nested
+    class getPrevious {
+        @DisplayName("El método getPrevious debe devolver null si no hay previo")
+        @Test
+        void getPrevious_DevuelveNull() {
+            LinkedNode<String> result = node.getPrevious();
+
+            assertNull(result);
+        }
+
+        @DisplayName("El método getPrevious debe devolver el nodo anterior")
+        @Test
+        void getPrevious_DevuelveNodoAnterior() {
+            LinkedNode<String> previous = new LinkedNode<String>("previous", null, null);
+            LinkedNode<String> test = new LinkedNode<String>("test", previous, null);
+
+            LinkedNode<String> result = test.getPrevious();
+
+            assertEquals(previous, result);
+        }
 
     }
 
-    @DisplayName("El método getPrevious debe devolver null")
-    @Test
-    void getPrevious_DevuelveNull() {
-        LinkedNode<String> result = node.getPrevious();
+    @DisplayName("método getNext")
+    @Nested
+    class getNext {
+        @DisplayName("El método getNext debe devolver null si no hay siguiente")
+        @Test
+        void getNext_DevuelveNull() {
+            LinkedNode<String> result = node.getNext();
 
-        assertNull(result);
+            assertNull(result);
+        }
+
+        @DisplayName("El método getNext debe devolver el nodo siguiente")
+        @Test
+        void getNext_DevuelveNodoSiguiente() {
+            LinkedNode<String> next = new LinkedNode<String>("next", null, null);
+            LinkedNode<String> test = new LinkedNode<String>("test", null, next);
+
+            LinkedNode<String> result = test.getNext();
+
+            assertEquals(next, result);
+
+        }
     }
 
-    @DisplayName("El método getNext debe devolver null")
-    @Test
-    void getNext_DevuelveNull() {
-        LinkedNode<String> result = node.getNext();
+    @DisplayName("método setItem")
+    @Nested
+    class setItem {
+        @DisplayName("El método setItem debe establecer el item")
+        @Test
+        void setItem_EstableceItem() {
+            String newItem = "newItem";
 
-        assertNull(result);
+            node.setItem(newItem);
+            String result = node.getItem();
+
+            assertEquals(newItem, result);
+        }
     }
 
-    @DisplayName("El método setItem debe establecer el item")
-    @Test
-    void setItem_EstableceItem() {
-        String newItem = "newItem";
+    @DisplayName("método setPrevious")
+    @Nested
+    class setPrevious {
+        @DisplayName("El método setPrevious debe establecer el nodo anterior")
+        @Test
+        void setPrevious_EstableceNodoAnterior() {
+            LinkedNode<String> newPrevious = new LinkedNode<String>("previous", null, null);
 
-        node.setItem(newItem);
-        String result = node.getItem();
+            node.setPrevious(newPrevious);
 
-        assertEquals(newItem, result);
+            assertEquals(newPrevious, node.getPrevious());
+        }
     }
 
-    @DisplayName("El método setPrevious debe establecer el nodo anterior")
-    @Test
-    void setPrevious_EstableceNodoAnterior() {
-        LinkedNode<String> newPrevious = new LinkedNode<String>("previous", null, null);
+    @DisplayName("método setNext")
+    @Nested
+    class setNext {
+        @DisplayName("El método setNext debe establecer el nodo siguiente")
+        @Test
+        void setNext_EstableceNodoSiguiente() {
+            LinkedNode<String> newNext = new LinkedNode<String>("next", null, null);
 
-        node.setPrevious(newPrevious);
+            node.setNext(newNext);
 
-        assertEquals(newPrevious, node.getPrevious());
+            assertEquals(newNext, node.getNext());
+        }
     }
 
-    @DisplayName("El método setNext debe establecer el nodo siguiente")
-    @Test
-    void setNext_EstableceNodoSiguiente() {
-        LinkedNode<String> newNext = new LinkedNode<String>("next", null, null);
+    @DisplayName("método isFirstNode")
+    @Nested
+    class isFirstNode {
+        @DisplayName("El método isFirstNode debe devolver false si el nodo no es el primero")
+        @Test
+        void isFirstNode_DevuelveFalse() {
+            LinkedNode<String> newNode = new LinkedNode<String>("new", null, null);
+            node.setPrevious(newNode);
 
-        node.setNext(newNext);
+            boolean result = node.isFirstNode();
 
-        assertEquals(newNext, node.getNext());
+            assertFalse(result);
+        }
+
+        @DisplayName("El método isFirstNode debe devolver true si el nodo es el primero")
+        @Test
+        void isFirstNode_DevuelveTrue() {
+            boolean result = node.isFirstNode();
+
+            assertTrue(result);
+        }
     }
 
-    @DisplayName("El método isFirstNode debe devolver false si el nodo no es el primero")
-    @Test
-    void isFirstNode_DevuelveFalse() {
-        LinkedNode<String> newNode = new LinkedNode<String>("new", null, null);
-        node.setPrevious(newNode);
+    @DisplayName("método isLastNode")
+    @Nested
+    class isLastNode {
+        @DisplayName("El método isLastNode debe devolver false si el nodo no es el último")
+        @Test
+        void isLastNode_DevuelveFalse() {
+            LinkedNode<String> newNode = new LinkedNode<String>("new", null, null);
+            node.setNext(newNode);
 
-        boolean result = node.isFirstNode();
+            boolean result = node.isLastNode();
 
-        assertFalse(result);
+            assertFalse(result);
+        }
+
+        @DisplayName("El método isLastNode debe devolver true si el nodo es el último")
+        @Test
+        void isLastNode_DevuelveTrue() {
+            boolean result = node.isLastNode();
+
+            assertTrue(result);
+        }
     }
 
-    @DisplayName("El método isFirstNode debe devolver true si el nodo es el primero")
-    @Test
-    void isFirstNode_DevuelveTrue() {
-        boolean result = node.isFirstNode();
+    @DisplayName("método isNotATerminalNode")
+    @Nested
+    class isNotATerminalNode {
 
-        assertTrue(result);
-    }
+        @DisplayName("El método isNotATerminalNode debe devolver true si el nodo no es el primero ni el último")
+        @Test
+        void isNotATerminalNode_DevuelveTrue() {
+            LinkedNode<String> previous = new LinkedNode<String>("previous", null, null);
+            LinkedNode<String> next = new LinkedNode<String>("next", null, null);
+            LinkedNode<String> node = new LinkedNode<String>("test", previous, next);
 
-    @DisplayName("El método isLastNode debe devolver false si el nodo no es el último")
-    @Test
-    void isLastNode_DevuelveFalse() {
-        LinkedNode<String> newNode = new LinkedNode<String>("new", null, null);
-        node.setNext(newNode);
+            boolean result = node.isNotATerminalNode();
 
-        boolean result = node.isLastNode();
+            assertTrue(result);
+        }
 
-        assertFalse(result);
-    }
+        @DisplayName("El método isNotATerminalNode debe devolver false si el nodo es el primero")
+        @Test
+        void isNotATerminalNode_Primero_DevuelveFalse() {
+            LinkedNode<String> previous = null;
+            LinkedNode<String> next = new LinkedNode<String>("next", null, null);
+            LinkedNode<String> node = new LinkedNode<String>("test", previous, next);
 
-    @DisplayName("El método isLastNode debe devolver true si el nodo es el último")
-    @Test
-    void isLastNode_DevuelveTrue() {
-        boolean result = node.isLastNode();
+            boolean result = node.isNotATerminalNode();
 
-        assertTrue(result);
-    }
+            assertFalse(result);
 
-    @DisplayName("El método isNotATerminalNode debe devolver true si el nodo no es el primero ni el último")
-    @Test
-    void isNotATerminalNode_DevuelveTrue() {
-        LinkedNode<String> previous = new LinkedNode<String>("previous", null, null);
-        LinkedNode<String> next = new LinkedNode<String>("next", null, null);
-        LinkedNode<String> node = new LinkedNode<String>("test", previous, next);
+        }
 
-        boolean result = node.isNotATerminalNode();
+        @DisplayName("El método isNotATerminalNode debe devolver false si el nodo es el último")
+        @Test
+        void isNotATerminalNode_Ultimo_DevuelveFalse() {
+            LinkedNode<String> previous = new LinkedNode<String>("previous", null, null);
+            LinkedNode<String> next = null;
+            LinkedNode<String> node = new LinkedNode<String>("test", previous, next);
 
-        assertTrue(result);
-    }
+            boolean result = node.isNotATerminalNode();
 
-    @DisplayName("El método isNotATerminalNode debe devolver false si el nodo es el primero")
-    @Test
-    void isNotATerminalNode_Primero_DevuelveFalse() {
-        LinkedNode<String> previous = null;
-        LinkedNode<String> next = new LinkedNode<String>("next", null, null);
-        LinkedNode<String> node = new LinkedNode<String>("test", previous, next);
+            assertFalse(result);
 
-        boolean result = node.isNotATerminalNode();
-
-        assertFalse(result);
-
-    }
-
-    @DisplayName("El método isNotATerminalNode debe devolver false si el nodo es el último")
-    @Test
-    void isNotATerminalNode_Ultimo_DevuelveFalse() {
-        LinkedNode<String> previous = new LinkedNode<String>("previous", null, null);
-        LinkedNode<String> next = null;
-        LinkedNode<String> node = new LinkedNode<String>("test", previous, next);
-
-        boolean result = node.isNotATerminalNode();
-
-        assertFalse(result);
-
+        }
     }
 
 }
