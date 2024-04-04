@@ -214,6 +214,9 @@ csx/
 ecf/
 rcf/
 
+# Maven target
+*/target
+
 # Windows Store app package directories and files
 AppPackages/
 BundleArtifacts/
