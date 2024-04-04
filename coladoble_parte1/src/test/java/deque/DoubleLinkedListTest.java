@@ -15,7 +15,7 @@ public class DoubleLinkedListTest {
     class Constructor {
         @DisplayName("El constructor debe establecer el tamaño a 0")
         @Test
-        void Constructor_EstableceTamanyoA0() {
+        void Constructor_EstableceTamanyoACero() {
             DoubleLinkedQueue<Integer> test = new DoubleLinkedList<Integer>();
             int expected = 0;
 
