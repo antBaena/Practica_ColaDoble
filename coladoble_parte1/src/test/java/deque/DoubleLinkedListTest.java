@@ -31,7 +31,7 @@ public class DoubleLinkedListTest {
     @DisplayName("metodo prepend")
     class prepend {
 
-        @DisplayName("El método prepend debe añadir un elemento al principio de la cola si esta vacia")
+        @DisplayName("El método prepend debe añadir un elemento al principio de la lista si esta vacia")
         @Test
         public void Prepend_ValorValido_AnyadeElementoAlPrincipio() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -43,7 +43,7 @@ public class DoubleLinkedListTest {
             assertEquals(valor, result);
         }
 
-        @DisplayName("El método prepend debe insertar un elemento al principio de la cola si hay mas elementos")
+        @DisplayName("El método prepend debe insertar un elemento al principio de la lista si hay mas elementos")
         @Test
         public void Prepend_ValorValido_InsertaElementoAlPrincipio() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -57,7 +57,7 @@ public class DoubleLinkedListTest {
             assertEquals(valor2, result);
         }
 
-        @DisplayName("El método prepend debe insertar el primer elemento al principio y mover el anterior primero a la segunda pos")
+        @DisplayName("El método prepend debe insertar el elemento al principio y mover el anterior primero a la segunda pos")
         @Test
         public void Prepend_ValorValido_DesplazaElementoAlPrincipio() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -84,7 +84,7 @@ public class DoubleLinkedListTest {
     @Nested
     @DisplayName("metodo append")
     class append {
-        @DisplayName("El método append debe añadir un elemento al final de la cola si la lista esta vacia")
+        @DisplayName("El método append debe añadir un elemento al final de la lista si la lista esta vacia")
         @Test
         void Append_ValorValido_AnyadeElementoAlFinal() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -96,7 +96,7 @@ public class DoubleLinkedListTest {
             assertEquals(valor, result);
         }
 
-        @DisplayName("El método append debe insertar un elemento al final de la cola si hay mas elementos")
+        @DisplayName("El método append debe insertar un elemento al final de la lista si hay mas elementos")
         @Test
         public void Append_ValorValido_InsertaElementoAlFinal() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -137,7 +137,7 @@ public class DoubleLinkedListTest {
     @Nested
     @DisplayName("metodo deleteFirst")
     class deleteFirst {
-        @DisplayName("El método deleteFirst debe eliminar el primer elemento de la cola si la lista tiene un solo elemento")
+        @DisplayName("El método deleteFirst debe eliminar el primer elemento de la lista si la lista tiene un solo elemento")
         @Test
         void DeleteFirst_ListaConUnElemento_EliminaElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -149,7 +149,7 @@ public class DoubleLinkedListTest {
             assertThrows(DoubleLinkedQueueException.class, () -> doubleList.first());
         }
 
-        @DisplayName("El método deleteFirst debe eliminar el primer elemento de la cola si la lista tiene varios elementos")
+        @DisplayName("El método deleteFirst debe eliminar el primer elemento de la lista si la lista tiene varios elementos")
         @Test
         void DeleteFirst_ListaConVariosElementos_EliminaElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -177,7 +177,7 @@ public class DoubleLinkedListTest {
     @Nested
     @DisplayName("metodo deleteLast")
     class deleteLast {
-        @DisplayName("El método deleteLast debe eliminar el ultimo elemento de la cola si la lista tiene un solo elemento")
+        @DisplayName("El método deleteLast debe eliminar el ultimo elemento de la lista si la lista tiene un solo elemento")
         @Test
         void DeleteLast_ListaConUnElemento_EliminaElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -189,7 +189,7 @@ public class DoubleLinkedListTest {
             assertThrows(DoubleLinkedQueueException.class, () -> doubleList.last());
         }
 
-        @DisplayName("El método deleteLast debe eliminar el ultimo elemento de la cola si la lista tiene varios elementos")
+        @DisplayName("El método deleteLast debe eliminar el ultimo elemento de la lista si la lista tiene varios elementos")
         @Test
         void DeleteLast_ListaConVariosElementos_EliminaElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -216,7 +216,7 @@ public class DoubleLinkedListTest {
     @Nested
     @DisplayName("metodo first")
     class first {
-        @DisplayName("El método first debe devolver el primer elemento de la cola si la lista tiene un elemento")
+        @DisplayName("El método first debe devolver el único elemento de la lista si la lista tiene un elemento")
         @Test
         void First_ListaConUnElemento_DevuelveElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -228,7 +228,7 @@ public class DoubleLinkedListTest {
             assertEquals(valor, result);
         }
 
-        @DisplayName("El método first debe devolver el primer elemento de la cola si la lista tiene varios elementos")
+        @DisplayName("El método first debe devolver el primer elemento de la lista si la lista tiene varios elementos")
         @Test
         void First_ListaConVariosElementos_DevuelveElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -255,7 +255,7 @@ public class DoubleLinkedListTest {
     @Nested
     @DisplayName("metodo last")
     class last {
-        @DisplayName("El método last debe devolver el ultimo elemento de la cola si la lista tiene un elemento")
+        @DisplayName("El método last debe devolver el unico elemento de la lista si la lista tiene un elemento")
         @Test
         void Last_ListaConUnElemento_DevuelveElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -267,7 +267,7 @@ public class DoubleLinkedListTest {
             assertEquals(valor, result);
         }
 
-        @DisplayName("El método last debe devolver el ultimo elemento de la cola si la lista tiene varios elementos")
+        @DisplayName("El método last debe devolver el ultimo elemento de la lista si la lista tiene varios elementos")
         @Test
         void Last_ListaConVariosElementos_DevuelveElemento() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -294,7 +294,7 @@ public class DoubleLinkedListTest {
     @Nested
     @DisplayName("metodo size")
     class size {
-        @DisplayName("El método size debe devolver 0 si la lista esta vacia")
+        @DisplayName("El método size debe devolver cero si la lista esta vacia")
         @Test
         void Size_ListaVacia_DevuelveCero() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();
@@ -305,7 +305,7 @@ public class DoubleLinkedListTest {
             assertEquals(expected, result);
         }
 
-        @DisplayName("El método size debe devolver 1 si la lista tiene un elemento")
+        @DisplayName("El método size debe devolver uno si la lista tiene un elemento")
         @Test
         void Size_ListaConUnElemento_DevuelveUno() {
             DoubleLinkedQueue<Integer> doubleList = new DoubleLinkedList<>();

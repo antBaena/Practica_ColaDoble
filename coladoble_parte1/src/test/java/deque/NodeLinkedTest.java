@@ -7,14 +7,6 @@ package deque;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
-/*
-    @DisplayName("El método <método> debe <devolver|lanzar> cuando <condición>")
-        @Test
-        void template() {
-            node.getItem().equals(item);
-    }
- */
-
 @DisplayName("LinkedNode")
 public class NodeLinkedTest {
 
@@ -78,11 +70,9 @@ public class NodeLinkedTest {
         @DisplayName("El método getItem debe devolver el item")
         @Test
         void getItem_DevulveItem() {
-
             String result = node.getItem();
 
             assertEquals(item, result);
-
         }
     }
 
