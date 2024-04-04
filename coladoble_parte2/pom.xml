@@ -1,6 +1,7 @@
 <project
 	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<!-- Informacion del proyecto  -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.example</groupId>
@@ -9,7 +10,8 @@
 	<!-- Propiedades del proyecto y maven -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- <maven.compiler.target>${maven.compiler.source}</maven.compiler.target> -->
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 	</properties>
 	<!-- Reutilizar versiones para las dependencias  -->
 	<dependencyManagement>
@@ -44,7 +46,8 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<!--  Los plugins son extensiones de maven (objetivos) que se ejecutan durante la fase de build o reporting -->
+	<!--  Los plugins son extensiones de maven (objetivos) que se ejecutan durante la fase de build o
+	reporting -->
 	<!-- 
 		- El Plugin Surefire se utiliza para ejecutar los tests de la aplicacion. 
 		- El pluging de Jacoco genera el reporte de cobertura.

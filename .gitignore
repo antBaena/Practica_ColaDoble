@@ -215,7 +215,7 @@ ecf/
 rcf/
 
 # Maven target
-coladoble/target
+*/target
 
 # Windows Store app package directories and files
 AppPackages/
